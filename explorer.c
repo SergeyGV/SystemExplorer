@@ -7,23 +7,40 @@ int minRandLen = -1;
 // Chance of randomly stopping on once minRandLen reached, set between 0-100
 int stopChance = 10;
 
-int f; // Flag to indicate whether we include random stopping or not
+int f = 0; // Flag to indicate whether we include random stopping or not
+int p = 0; // Flag to print the path rather than to go there
+
+int changer(char* path); // Function that changes path as provided by user
 
 int main(int argc, char* argv[]) {
-    int f = 0;
     int c;
-    while ((c = getopt(argc, argv, "f")) != -1) {
+    while ((c = getopt(argc, argv, "fp")) != -1) {
         switch (c) {
             case 'f':
                 f = 1;
                 break;
+            case 'p':
+                p = 1;
+                break;
             default:
-                printf("%s\n" , "usage: ./a.out [DIRPATH] [-f]");
+                printf("%s\n" , "usage: ./a.out [DIRPATH] [-f] [-p]");
                 return(1);
         }
     }
     if (argc - optind > 1) {
-        printf("%s\n" , "usage: ./a.out [DIRPATH] [-f]");
+        printf("%s\n" , "usage: ./a.out [DIRPATH] [-f] [-p]");
+        return(1);
+    } else if (argc - optind == 1) {
+        if ((changer(argv[argc - 1]))) {
+            return(1);
+        }
+    }
+    return(0);
+}
+
+int changer(char* path) {
+    if ((chdir(path))) {
+        perror("chdir");
         return(1);
     }
     return(0);
