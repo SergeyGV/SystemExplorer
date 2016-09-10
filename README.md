@@ -16,5 +16,6 @@ Optional input of providing your own file path from where to begin. Otherwise, t
 
 ## Flags
 
--f
-Do not stop randomly and only end upon reaching a directory with no sub directories
+-f: Do not stop randomly and only end upon reaching a directory with no sub directories
+
+-p: Print the path rather than changing the directory to it
