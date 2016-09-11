@@ -68,7 +68,6 @@ void runner(int len) {
     }
     // Find and change the directory as needed
     int chosendir = dirChoose();
-    printf("%s%d\n", "Directory chosen: ", chosendir);
     if (chosendir == -1) {
         return;
     }
@@ -93,9 +92,11 @@ void runner(int len) {
                 perror("stat");
                 exit(1);
             }
-            if (S_ISDIR(path.st_mode) && S_IXUSR) {
+            if (S_ISDIR(path.st_mode) && access(fullpath, X_OK) == 0) {
                 if (currentdir == chosendir) {
-                    changer(fullpath);
+                    if (changer(fullpath) == 1) {
+                        exit(1);
+                    }
                     break;
                 }
                 currentdir++;

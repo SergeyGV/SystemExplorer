@@ -34,7 +34,7 @@ int dirChoose() {
                 perror("stat");
                 exit(1);
             }
-            if (S_ISDIR(path.st_mode) && S_IXUSR) {
+            if (S_ISDIR(path.st_mode) && access(fullpath, X_OK) == 0) {
                 dircounter++;
             }
             memset(cwd, '\0', sizeof(cwd));
