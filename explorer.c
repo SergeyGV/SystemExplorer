@@ -54,8 +54,11 @@ int main(int argc, char* argv[]) {
         perror("getcwd");
         exit(1);
     } else {
-        printf("%s%s\n", "The filepath is ", cwd);
+        printf("%s\n", cwd);
     }
+	if (p == 1) {
+		return(-1);
+	}
     return(0);
 }
 
