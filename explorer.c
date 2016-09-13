@@ -37,12 +37,12 @@ int main(int argc, char* argv[]) {
                 p = 1;
                 break;
             default:
-                printf("%s\n" , "usage: ./a.out [DIRPATH] [-f] [-p]");
+                printf("%s\n" , "usage: . warp.sh [DIRPATH] [-f] [-p]");
                 return(1);
         }
     }
     if (argc - optind > 1) {
-        printf("%s\n" , "usage: ./a.out [DIRPATH] [-f] [-p]");
+        printf("%s\n" , "usage: . warp.sh [DIRPATH] [-f] [-p]");
         return(1);
     } else if (argc - optind == 1) {
         if ((changer(argv[argc - 1]))) {
@@ -56,10 +56,11 @@ int main(int argc, char* argv[]) {
     } else {
         printf("%s\n", cwd);
     }
+	// 2 indicate prints, else, 0 for normal cd
 	if (p == 1) {
-		return(-1);
+		return(2);
 	}
-    return(0);
+	return(0);
 }
 
 void runner(int len) {
