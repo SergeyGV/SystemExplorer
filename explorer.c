@@ -93,10 +93,9 @@ void runner(int len) {
             strcat(fullpath, dp->d_name);
             // Stat it and check if it's a dir and executable
             if (stat(fullpath, &path) == -1) {
-                perror("stat");
-                exit(1);
-            }
-            if (S_ISDIR(path.st_mode) && access(fullpath, X_OK) == 0) {
+                //perror("stat");
+                //exit(1);
+            } else if (S_ISDIR(path.st_mode) && access(fullpath, X_OK) == 0) {
                 if (currentdir == chosendir) {
                     if (changer(fullpath) == 1) {
                         exit(1);
@@ -108,6 +107,7 @@ void runner(int len) {
             memset(cwd, '\0', sizeof(cwd));
         }
     }
+	closedir(dir);
     runner(len + 1);
 }
 

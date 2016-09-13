@@ -31,15 +31,15 @@ int dirChoose() {
             strcat(fullpath, dp->d_name);
             // Stat it and check if it's a dir and executable
             if (stat(fullpath, &path) == -1) {
-                perror("stat");
-                exit(1);
-            }
-            if (S_ISDIR(path.st_mode) && access(fullpath, X_OK) == 0) {
+                //perror("stat");
+                //exit(1);
+            } else if (S_ISDIR(path.st_mode) && access(fullpath, X_OK) == 0) {
                 dircounter++;
             }
             memset(cwd, '\0', sizeof(cwd));
         }
     }
+	closedir(dir);
     // If above 1, return anywhere from 0 to dircount - 1
     // Else, return dircount - 1
     if (dircounter > 1) {
