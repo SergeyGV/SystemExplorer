@@ -9,12 +9,12 @@ Specifically, the program will locate a random sub directory from the current on
 ## How to run
 
 ```sh
-. warp.sh [-d DIRECTORY] [-f] [-p]
+. warp.sh [DIRECTORY] [-f] [-p]
 ```
 
-## Optional Flags
+Directory is an optional input to tell the program to start from there instead of your current directory.
 
--d : The program will start from that directory instead of the current one
+## Optional Flags
 
 -f : Do not stop randomly and only end upon reaching a directory with no sub directories
 
